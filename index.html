@@ -47,18 +47,17 @@
 
         .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 60px; color: #5d4037; font-family: 'Georgia', serif; }
 
-        /* 캐릭터 카드 디자인 - 산리오/토이스토리 친구들 */
+        /* 캐릭터 카드 디자인 */
         .character-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
         .char-card { 
             background: white; padding: 40px; border-radius: 20px; text-align: center; 
             border: 1px solid #efebe9; box-shadow: 0 10px 25px rgba(0,0,0,0.03); 
-            transition: 0.3s ease;
         }
         
         .char-img { 
             width: 150px; height: 150px; border-radius: 50%; 
             margin: 0 auto 25px; border: 6px solid #fdfaf5; 
-            background-size: contain; /* 사진 전체가 보이도록 설정 */
+            background-size: contain; 
             background-repeat: no-repeat;
             background-position: center;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
@@ -66,19 +65,17 @@
 
         .char-name { font-size: 1.8rem; color: #795548; margin-bottom: 10px; font-family: 'Georgia', serif; }
 
-        /* [3] 책 소개 디자인 - 배경 변경 */
-        .book-section {
-            /* 네번째 하늘 사진을 배경으로 적용 */
-            background-image: linear-gradient(rgba(253, 250, 245, 0.8), rgba(253, 250, 245, 0.8)), url('image_11.png');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed; /* 패럴랙스 효과 */
+        /* [3] 책 소개 디자인 - 배경 제거 및 이미지 변경 */
+        .book-box { 
+            display: flex; gap: 60px; background: white; padding: 60px; border-radius: 15px; 
+            align-items: center; border: 1px solid #efebe9; box-shadow: 0 5px 20px rgba(0,0,0,0.03); 
         }
-        
-        .book-box { display: flex; gap: 60px; background: rgba(255, 255, 255, 0.9); padding: 60px; border-radius: 15px; align-items: center; border: 1px solid #efebe9; box-shadow: 0 5px 20px rgba(0,0,0,0.03); }
         .book-img { width: 300px; border-radius: 5px; box-shadow: 10px 10px 25px rgba(0,0,0,0.15); }
         
-        .buy-btn { display: inline-block; padding: 15px 40px; background: #8d6e63; color: white; text-decoration: none; border-radius: 30px; margin-top: 25px; font-weight: bold; }
+        .buy-btn { 
+            display: inline-block; padding: 15px 40px; background: #8d6e63; color: white; 
+            text-decoration: none; border-radius: 30px; margin-top: 25px; font-weight: bold; 
+        }
 
         footer { text-align: center; padding: 50px; background: #3e2723; color: #d7ccc8; }
 
@@ -90,4 +87,81 @@
 </head>
 <body>
 
-    <header class="hero" id
+    <header class="hero" id="hero-bg">
+        <div class="hero-content">
+            <h1>WELCOME</h1>
+            <ul class="hero-nav">
+                <li><a onclick="showSection('home')">Home</a></li>
+                <li><a onclick="showSection('characters')">캐릭터</a></li>
+                <li><a onclick="showSection('book')">책소개</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <section id="characters" class="content-section">
+        <h2 class="section-title">Story Characters</h2>
+        <div class="character-grid">
+            <div class="char-card">
+                <div class="char-img" style="background-image: url('image_8.png');"></div>
+                <h3 class="char-name">Pochacco</h3>
+                <p>호기심 많은 멍멍이 친구.</p>
+            </div>
+            <div class="char-card">
+                <div class="char-img" style="background-image: url('image_10.png');"></div>
+                <h3 class="char-name">Alien</h3>
+                <p>세 개의 눈을 가진 외계인 장난감.</p>
+            </div>
+            <div class="char-card">
+                <div class="char-img" style="background-image: url('image_9.png');"></div>
+                <h3 class="char-name">Hangyodon</h3>
+                <p>겁 많고 서툰 반어인 친구.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="book" class="content-section">
+        <h2 class="section-title">Book Introduction</h2>
+        <div class="book-box">
+            <img src="image_12.png" alt="꽃을 보듯 너를 본다 책 표지" class="book-img">
+            <div class="book-text">
+                <h3>꽃을 보듯 너를 본다</h3>
+                <p><strong>나태주 시집</strong></p>
+                <p>독자들이 직접 뽑은 나태주 시인의 대표 시집. 소박하지만 따뜻한 위로를 전하는 시어들이 담겨 있습니다.</p>
+                <p style="font-weight: bold; color: #8d6e63;">#시집 #나태주 #따뜻한위로 #베스트셀러</p>
+                <a href="https://search.shopping.naver.com/book/search?query=%EA%BD%83%EC%9D%84%20%EB%B3%B4%EB%93%AF%20%EB%84%88%EB%A5%BC%20%EB%B3%B8%EB%8B%A4" target="_blank" class="buy-btn">도서 상세정보 보기</a>
+            </div>
+        </div>
+    </section>
+
+    <footer id="footer" style="display: none;">
+        <p>&copy; 2026 리영의 감성 책소개. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function showSection(sectionId) {
+            document.getElementById('characters').style.display = 'none';
+            document.getElementById('book').style.display = 'none';
+            document.getElementById('footer').style.display = 'none';
+            
+            const hero = document.getElementById('hero-bg');
+
+            if (sectionId === 'home') {
+                hero.style.height = '100vh';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                hero.style.height = '60vh';
+                const target = document.getElementById(sectionId);
+                target.style.display = 'block';
+                document.getElementById('footer').style.display = 'block';
+                
+                setTimeout(() => {
+                    window.scrollTo({
+                        top: hero.offsetHeight - 20,
+                        behavior: 'smooth'
+                    });
+                }, 100);
+            }
+        }
+    </script>
+</body>
+</html>
