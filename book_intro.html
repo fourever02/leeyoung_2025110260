@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WELCOME - 빈티지 다이어리 & 귀여운 친구들</title>
+    <title>WELCOME - 리영의 감성 공간</title>
     <style>
         /* 기본 스타일 */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Pretendard', sans-serif; background-color: #fdfaf5; color: #333; overflow-x: hidden; }
         
-        /* [1] 메인 페이지 (배경 사진이 안뜨더라도 하얗게 보이지 않게 갈색 배경색 추가) */
+        /* [1] 메인 페이지 */
         .hero { 
             height: 100vh; 
             display: flex; flex-direction: column; align-items: center; justify-content: center; 
-            background-color: #8d6e63; /* 배경 이미지가 없을 때를 대비한 기본색 */
+            background-color: #8d6e63;
             background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=1200&q=80');
             background-size: cover; background-position: center;
             color: white; text-align: center;
@@ -25,7 +25,6 @@
             text-shadow: 2px 2px 20px rgba(0,0,0,0.6);
         }
 
-        /* 메뉴 중앙 정렬 스타일 */
         .hero-nav { list-style: none; display: flex; gap: 50px; justify-content: center; }
         .hero-nav li a { 
             text-decoration: none; color: white; font-weight: 500; font-size: 1.3rem; 
@@ -34,7 +33,7 @@
         }
         .hero-nav li a:hover { opacity: 1; border-bottom: 2px solid white; }
 
-        /* [2] 섹션 스타일 (메뉴 클릭 시 노출) */
+        /* [2] 섹션 공통 스타일 */
         .content-section { 
             display: none; 
             padding: 100px 10%; background-color: #fdfaf5; min-height: 600px;
@@ -56,21 +55,21 @@
         }
         
         .char-img { 
-            width: 150px; height: 150px; border-radius: 50%; 
+            width: 180px; height: 180px; border-radius: 20px; 
             margin: 0 auto 25px; border: 6px solid #fdfaf5; 
-            background-color: #eee; /* 사진 없을 때 기본색 */
-            background-size: contain; 
+            background-color: #eee;
+            background-size: cover; 
             background-repeat: no-repeat;
             background-position: center;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
-        /* [3] 책 소개 디자인 - 새 이미지 적용 */
+        /* [3] 책 소개 디자인 */
         .book-box { 
             display: flex; gap: 60px; background: white; padding: 60px; border-radius: 15px; 
             align-items: center; border: 1px solid #efebe9; box-shadow: 0 5px 20px rgba(0,0,0,0.03); 
         }
-        .book-img { width: 300px; border-radius: 5px; box-shadow: 10px 10px 25px rgba(0,0,0,0.15); background-color: #eee; }
+        .book-img { width: 300px; border-radius: 5px; box-shadow: 10px 10px 25px rgba(0,0,0,0.15); }
         
         .buy-btn { 
             display: inline-block; padding: 15px 40px; background: #8d6e63; color: white; 
@@ -102,19 +101,19 @@
         <h2 class="section-title">Story Characters</h2>
         <div class="character-grid">
             <div class="char-card">
-                <div class="char-img" style="background-image: url('image_8.png');"></div>
+                <div class="char-img" style="background-image: url('포차코.jpeg');"></div>
                 <h3>Pochacco</h3>
-                <p>호기심 많은 멍멍이 친구.</p>
+                <p>귀여운 몸짓의 포차코 친구.</p>
             </div>
             <div class="char-card">
-                <div class="char-img" style="background-image: url('image_10.png');"></div>
+                <div class="char-img" style="background-image: url('알린.jpeg');"></div>
                 <h3>Alien</h3>
-                <p>세 개의 눈을 가진 외계인 장난감.</p>
+                <p>함께 게임을 즐기는 알린 삼형제.</p>
             </div>
             <div class="char-card">
-                <div class="char-img" style="background-image: url('image_9.png');"></div>
+                <div class="char-img" style="background-image: url('한교동.jpeg');"></div>
                 <h3>Hangyodon</h3>
-                <p>겁 많고 서툰 반어인 친구.</p>
+                <p>하트를 든 사랑스러운 한교동.</p>
             </div>
         </div>
     </section>
@@ -122,7 +121,7 @@
     <section id="book" class="content-section">
         <h2 class="section-title">Book Introduction</h2>
         <div class="book-box">
-            <img src="image_13.png" alt="꽃을 보듯 너를 본다 책 표지" class="book-img">
+            <img src="꽃을보듯너를본다jpg.jpg" alt="꽃을 보듯 너를 본다 책 표지" class="book-img">
             <div class="book-text">
                 <h3>꽃을 보듯 너를 본다</h3>
                 <p><strong>나태주 시집 (기념 에디션)</strong></p>
@@ -134,7 +133,7 @@
     </section>
 
     <footer id="footer" style="display: none;">
-        <p>&copy; 2026 리영의 감성 책소개. All rights reserved.</p>
+        <p>&copy; 2026 리영의 감성 공간. All rights reserved.</p>
     </footer>
 
     <script>
