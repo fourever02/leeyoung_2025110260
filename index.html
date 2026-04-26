@@ -1,141 +1,107 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>책 소개 - 한 권으로 끝내는 HTML</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>도서 소개 - 모던 스타일</title>
     <style>
-        @page {
-            size: A4;
-            margin: 20mm;
-            background-color: #ffffff;
-        }
-        body {
-            font-family: 'NanumGothic', 'Malgun Gothic', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #2c3e50;
-            color: white;
-            padding: 30pt 20pt;
-            text-align: center;
-            margin-bottom: 30pt;
-        }
-        h1 { margin: 0; font-size: 24pt; }
-        .container { padding: 0 20pt; }
-        .book-main {
-            display: flex;
-            margin-bottom: 30pt;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 20pt;
-        }
-        .book-cover {
-            width: 180pt;
-            height: 250pt;
-            background-color: #f0f0f0;
-            border: 1px solid #ddd;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: #999;
-            margin-right: 30pt;
-            flex-shrink: 0;
-        }
-        .book-details h2 {
-            margin-top: 0;
-            color: #2c3e50;
-            font-size: 18pt;
-        }
-        .info-list {
-            list-style: none;
-            padding: 0;
-        }
-        .info-list li {
-            margin-bottom: 8pt;
-            font-size: 11pt;
-        }
-        .info-list strong {
-            display: inline-block;
-            width: 60pt;
-            color: #555;
-        }
-        section {
-            margin-bottom: 25pt;
-        }
-        h3 {
-            border-left: 5px solid #2c3e50;
-            padding-left: 10pt;
-            color: #2c3e50;
-            font-size: 14pt;
-            margin-bottom: 10pt;
-        }
-        .content-box {
-            background-color: #f8f9fa;
-            padding: 15pt;
-            border-radius: 5pt;
-        }
-        ul, ol {
-            padding-left: 20pt;
-        }
-        li {
-            margin-bottom: 5pt;
+        /* 기본 스타일 초기화 */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Pretendard', -apple-system, sans-serif; line-height: 1.7; color: #333; background-color: #f9f9fb; }
+        
+        /* 네비게이션 바 */
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 10%; background: #fff; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .logo { font-weight: 800; font-size: 1.5rem; color: #4e73df; }
+        .nav-links { list-style: none; display: flex; gap: 30px; }
+        .nav-links a { text-decoration: none; color: #555; font-weight: 500; transition: 0.3s; }
+        .nav-links a:hover { color: #4e73df; }
+
+        /* 메인 히어로 섹션 */
+        .hero { height: 80vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); text-align: center; padding: 0 20px; }
+        .hero-content h1 { font-size: 3.5rem; margin-bottom: 20px; color: #2d3436; line-height: 1.2; }
+        .hero-content p { font-size: 1.2rem; color: #636e72; margin-bottom: 30px; }
+        .btn { display: inline-block; padding: 15px 40px; background: #4e73df; color: white; text-decoration: none; border-radius: 30px; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(78, 115, 223, 0.3); }
+        .btn:hover { background: #3751a1; transform: translateY(-3px); }
+
+        /* 책 소개 카테고리 (상세 섹션) */
+        .section { padding: 100px 10%; }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-size: 2.5rem; color: #2d3436; position: relative; display: inline-block; }
+        .section-title h2::after { content: ""; display: block; width: 50px; height: 4px; background: #4e73df; margin: 10px auto; }
+
+        .book-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 50px; align-items: start; background: #fff; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .book-img { width: 100%; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        .book-info h3 { font-size: 2rem; margin-bottom: 15px; }
+        .info-label { display: inline-block; width: 80px; font-weight: bold; color: #4e73df; }
+        
+        .feature-list { list-style: none; margin-top: 30px; }
+        .feature-list li { margin-bottom: 10px; padding-left: 25px; position: relative; }
+        .feature-list li::before { content: "✓"; position: absolute; left: 0; color: #4e73df; font-weight: bold; }
+
+        footer { text-align: center; padding: 40px; background: #2d3436; color: #eee; }
+
+        /* 반응형 디자인 */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.2rem; }
+            .book-grid { grid-template-columns: 1fr; }
+            nav { padding: 20px 5%; }
+            .nav-links { display: none; } /* 모바일에서는 간단하게 생략 */
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>도서 소개서</h1>
+
+    <nav>
+        <div class="logo">BOOKSTORY</div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#intro">도서소개</a></li>
+            <li><a href="#contents">목차</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>지식의 문을 여는<br>한 권의 시작</h1>
+            <p>모던 웹 개발의 정석, HTML의 기초부터 실전까지 함께합니다.</p>
+            <a href="#intro" class="btn">자세히 알아보기</a>
+        </div>
     </header>
-    
-    <div class="container">
-        <div class="book-main">
-            <div class="book-cover">
-                표지 이미지 영역
+
+    <section id="intro" class="section">
+        <div class="section-title">
+            <h2>도서 상세 소개</h2>
+        </div>
+        
+        <div class="book-grid">
+            <div>
+                <img src="https://via.placeholder.com/400x550" alt="책 표지" class="book-img">
             </div>
-            <div class="book-details">
-                <h2>한 권으로 끝내는 HTML</h2>
-                <ul class="info-list">
-                    <li><strong>저자</strong> 홍길동</li>
-                    <li><strong>출판사</strong> 코딩출판사</li>
-                    <li><strong>발행일</strong> 2024년 05월 20일</li>
-                    <li><strong>가격</strong> 18,000원</li>
-                    <li><strong>ISBN</strong> 123-45-67890-12-3</li>
+            <div class="book-info">
+                <h3>한 권으로 끝내는 HTML</h3>
+                <p style="color: #666; margin-bottom: 25px;">웹사이트 제작의 첫걸음, 누구나 쉽고 완벽하게 마스터하는 가이드북입니다.</p>
+                
+                <p><span class="info-label">저자</span> 홍길동</p>
+                <p><span class="info-label">출판사</span> 코딩출판사</p>
+                <p><span class="info-label">가격</span> 18,000원</p>
+                
+                <ul class="feature-list">
+                    <li>최신 HTML5 표준 완벽 반영</li>
+                    <li>시각적 이해를 돕는 풍부한 도해</li>
+                    <li>직접 실습하며 배우는 프로젝트형 구성</li>
+                    <li>비전공자 맞춤형 친절한 설명</li>
                 </ul>
+                
+                <div style="margin-top: 40px;">
+                    <a href="#" class="btn" style="padding: 12px 30px;">도서 구매하기</a>
+                </div>
             </div>
         </div>
+    </section>
 
-        <section>
-            <h3>책 소개</h3>
-            <p>이 책은 웹 개발의 가장 기본이 되는 HTML5를 기초부터 실전 응용까지 누구나 쉽게 배울 수 있도록 구성되었습니다. 비전공자도 이해할 수 있는 쉬운 설명과 풍부한 예제 코드를 통해 나만의 웹사이트를 직접 만들어보는 즐거움을 선사합니다.</p>
-        </section>
+    <footer>
+        <p>&copy; 2024 BOOKSTORY. All rights reserved.</p>
+    </footer>
 
-        <section>
-            <h3>주요 특징</h3>
-            <div class="content-box">
-                <ul>
-                    <li>최신 HTML5 표준 및 시맨틱 태그 완벽 반영</li>
-                    <li>단계별 실습 예제로 배우는 웹 구조 설계</li>
-                    <li>초보자가 자주 실수하는 포인트 짚어주기</li>
-                    <li>모바일 환경을 고려한 기초 레이아웃 가이드</li>
-                </ul>
-            </div>
-        </section>
-
-        <section>
-            <h3>목차</h3>
-            <ol>
-                <li>웹의 역사와 HTML의 이해</li>
-                <li>텍스트와 하이퍼링크 태그</li>
-                <li>멀티미디어(이미지, 영상) 활용하기</li>
-                <li>데이터 정리를 위한 표와 리스트</li>
-                <li>사용자 입력을 받는 폼(Form) 요소</li>
-                <li>시맨틱 태그로 완성하는 웹사이트 구조</li>
-            </ol>
-        </section>
-    </div>
 </body>
 </html>
