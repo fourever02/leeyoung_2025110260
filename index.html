@@ -74,7 +74,9 @@
         .char-img { 
             width: 150px; height: 150px; border-radius: 50%; 
             margin: 0 auto 25px; border: 6px solid #fdfaf5; 
-            background-size: cover; background-position: center;
+            background-size: contain; /* 이미지가 잘리지 않고 전체가 보이도록 수정 */
+            background-repeat: no-repeat;
+            background-position: center;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
@@ -82,9 +84,10 @@
         .char-series { font-size: 1rem; color: #a1887f; margin-bottom: 15px; font-weight: bold; }
         .char-desc { font-size: 1rem; color: #6d4c41; line-height: 1.7; }
 
-        /* 책 상세 디자인 */
+        /* 책 소개 디자인 (기존 유지) */
         .book-box { display: flex; gap: 60px; background: white; padding: 60px; border-radius: 15px; align-items: center; border: 1px solid #efebe9; box-shadow: 0 5px 20px rgba(0,0,0,0.03); }
         .book-img { width: 280px; border-radius: 5px; box-shadow: 10px 10px 25px rgba(0,0,0,0.1); }
+        .book-text h3 { font-size: 2.4rem; margin-bottom: 25px; color: #5d4037; }
         .buy-btn { display: inline-block; padding: 15px 40px; background: #8d6e63; color: white; text-decoration: none; border-radius: 30px; margin-top: 25px; font-weight: bold; }
 
         footer { text-align: center; padding: 50px; background: #3e2723; color: #d7ccc8; }
@@ -116,72 +119,11 @@
         <h2 class="section-title">Story Characters</h2>
         <div class="character-grid">
             <div class="char-card">
-                <div class="char-img" style="background-image: url('image_2.png');"></div>
+                <div class="char-img" style="background-image: url('http://sanriokorea.co.kr/wp-content/themes/sanrio/images/pochacco.png');"></div>
                 <h3 class="char-name">Pochacco</h3>
                 <p class="char-series">산리오 (Sanrio)</p>
                 <p class="char-desc">호기심 많고 참견하기 좋아하는 멍멍이 친구. 스포티한 성격으로 축구와 농구를 좋아하며, 꿈은 키가 1cm라도 더 크는 것입니다.</p>
             </div>
             
             <div class="char-card">
-                <div class="char-img" style="background-image: url('image_4.png');"></div>
-                <h3 class="char-name">Alien</h3>
-                <p class="char-series">토이스토리 (Toy Story)</p>
-                <p class="char-desc">"갈고리~~~!" 세 개의 눈을 가진 외계인 장난감. 갈고리 뽑기 기계 속에서 살다가 아가씨가 데려가길 기다리는 순수하고 귀여운 존재들입니다.</p>
-            </div>
-            
-            <div class="char-card">
-                <div class="char-img" style="background-image: url('image_6.png');"></div>
-                <h3 class="char-name">Hangyodon</h3>
-                <p class="char-series">산리오 (Sanrio)</p>
-                <p class="char-desc">비 오는 날을 좋아하는 반어인 친구. 사실은 연기를 아주 잘하며 언젠가 멋진 히어로가 되는 것이 꿈이지만, 생각보다 겁이 많고 조금은 서툰 면이 매력입니다.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="book" class="content-section">
-        <h2 class="section-title">About the Book</h2>
-        <div class="book-box">
-            <img src="https://via.placeholder.com/280x400?text=Vintage+Diary" alt="Book" class="book-img">
-            <div class="book-text">
-                <h3>다이어리 속의 여행자</h3>
-                <p>낡은 다이어리에서 시작되는 특별한 모험. 빈티지한 감성과 귀여운 친구들의 이야기가 가득 담긴 성장 판타지 소설입니다.</p>
-                <a href="#" class="buy-btn" onclick="alert('구매 페이지로 이동합니다!')">도서 소장하기</a>
-            </div>
-        </div>
-    </section>
-
-    <footer id="footer" style="display: none;">
-        <p>&copy; 2026 리영의 감성 책소개. All rights reserved.</p>
-    </footer>
-
-    <script>
-        function showSection(sectionId) {
-            // 모든 섹션 숨기기
-            document.getElementById('characters').style.display = 'none';
-            document.getElementById('book').style.display = 'none';
-            document.getElementById('footer').style.display = 'none';
-            
-            const hero = document.getElementById('hero-bg');
-
-            if (sectionId === 'home') {
-                hero.style.height = '100vh';
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            } else {
-                hero.style.height = '60vh';
-                const target = document.getElementById(sectionId);
-                target.style.display = 'block';
-                document.getElementById('footer').style.display = 'block';
-                
-                // 스크롤 이동
-                setTimeout(() => {
-                    window.scrollTo({
-                        top: hero.offsetHeight - 20,
-                        behavior: 'smooth'
-                    });
-                }, 100);
-            }
-        }
-    </script>
-
-</body>
-</html>
+                <div class="char-img"
