@@ -3,38 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>빈티지 다이어리 - 도서 및 캐릭터 소개</title>
+    <title>WELCOME - 빈티지 다이어리</title>
     <style>
         /* 기본 스타일 */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Pretendard', sans-serif; line-height: 1.6; color: #333; background-color: #fdfaf5; scroll-behavior: smooth; }
         
-        /* 네비게이션 - 메뉴를 좌측으로 배치 */
-        nav { 
-            display: flex; 
-            justify-content: flex-start; /* 좌측 정렬 */
-            padding: 20px 10%; 
-            background: rgba(255, 255, 255, 0.9); 
-            position: sticky; 
-            top: 0; 
-            z-index: 1000; 
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05); 
-        }
-        .nav-links { list-style: none; display: flex; gap: 40px; }
-        .nav-links a { text-decoration: none; color: #5d4037; font-weight: 600; font-size: 1.1rem; transition: 0.3s; }
-        .nav-links a:hover { color: #a1887f; }
+        /* 상단 네비게이션바 제거 (메인 화면 중앙으로 이동시키기 위함) */
+        nav { display: none; }
 
-        /* [1] 메인 페이지 (Hero Section) - 빈티지 다이어리 배경 */
+        /* [1] 메인 페이지 (Hero Section) */
         .hero { 
-            height: 90vh; 
-            display: flex; align-items: center; justify-content: center; 
-            /* 빈티지 다이어리 느낌의 언스플래시 이미지 사용 */
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=1200&q=80');
+            height: 100vh; /* 화면 전체 높이 */
+            display: flex; flex-direction: column; align-items: center; justify-content: center; 
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=1200&q=80');
             background-size: cover; background-position: center;
             color: white; text-align: center;
         }
-        .hero-content h1 { font-size: 3.5rem; margin-bottom: 20px; text-shadow: 2px 2px 15px rgba(0,0,0,0.6); font-family: 'Georgia', serif; }
-        .hero-content p { font-size: 1.4rem; margin-bottom: 30px; opacity: 0.9; font-weight: 300; }
+
+        /* WELCOME 텍스트 스타일 */
+        .hero-content h1 { 
+            font-size: 5rem; 
+            letter-spacing: 8px;
+            text-shadow: 2px 2px 20px rgba(0,0,0,0.6); 
+            font-family: 'Georgia', serif; 
+            margin-bottom: 20px;
+        }
+
+        /* WELCOME 바로 아래로 옮긴 메뉴 스타일 */
+        .hero-nav { list-style: none; display: flex; gap: 40px; margin-top: 10px; }
+        .hero-nav li a { 
+            text-decoration: none; 
+            color: white; 
+            font-weight: 500; 
+            font-size: 1.2rem; 
+            padding-bottom: 5px;
+            border-bottom: 1px solid transparent;
+            transition: 0.3s; 
+            opacity: 0.9;
+        }
+        .hero-nav li a:hover { opacity: 1; border-bottom: 1px solid white; }
 
         /* 공통 섹션 스타일 */
         .section { padding: 100px 10%; }
@@ -42,44 +50,35 @@
 
         /* [2] 캐릭터 소개 카테고리 */
         .character-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
-        .char-card { background: white; padding: 40px; border-radius: 15px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.03); transition: 0.3s; border: 1px solid #efebe9; }
-        .char-card:hover { transform: translateY(-10px); box-shadow: 0 15px 40px rgba(93, 64, 55, 0.1); }
-        .char-img { width: 140px; height: 140px; border-radius: 50%; background: #d7ccc8; margin: 0 auto 25px; object-fit: cover; border: 5px solid #f5f5f5; }
+        .char-card { background: white; padding: 40px; border-radius: 15px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.03); border: 1px solid #efebe9; }
+        .char-img { width: 140px; height: 140px; border-radius: 50%; background: #d7ccc8; margin: 0 auto 25px; }
         .char-name { font-size: 1.6rem; color: #795548; margin-bottom: 15px; }
 
         /* [3] 책 소개 카테고리 */
-        .book-detail { display: flex; gap: 60px; background: white; padding: 60px; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.03); align-items: center; border: 1px solid #efebe9; }
+        .book-detail { display: flex; gap: 60px; background: white; padding: 60px; border-radius: 15px; align-items: center; border: 1px solid #efebe9; }
         .book-img { width: 320px; border-radius: 5px; box-shadow: 15px 15px 30px rgba(0,0,0,0.1); }
         .book-text h3 { font-size: 2.4rem; margin-bottom: 25px; color: #5d4037; }
-        .book-text p { font-size: 1.1rem; color: #6d4c41; line-height: 1.8; }
-        .buy-btn { display: inline-block; padding: 15px 45px; background: #8d6e63; color: white; text-decoration: none; border-radius: 30px; margin-top: 30px; font-weight: bold; transition: 0.3s; }
-        .buy-btn:hover { background: #5d4037; }
+        .buy-btn { display: inline-block; padding: 15px 45px; background: #8d6e63; color: white; text-decoration: none; border-radius: 30px; margin-top: 30px; font-weight: bold; }
 
-        /* 푸터 */
-        footer { text-align: center; padding: 60px; background: #3e2723; color: #d7ccc8; font-size: 0.9rem; }
+        footer { text-align: center; padding: 60px; background: #3e2723; color: #d7ccc8; }
 
-        /* 반응형 */
-        @media (max-width: 992px) {
-            .book-detail { flex-direction: column; text-align: center; padding: 40px; }
-            .nav-links { gap: 20px; }
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 3rem; }
+            .hero-nav { gap: 20px; }
+            .book-detail { flex-direction: column; text-align: center; }
         }
     </style>
 </head>
 <body>
 
-    <nav>
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#characters">캐릭터</a></li>
-            <li><a href="#book">책소개</a></li>
-        </ul>
-    </nav>
-
     <header id="home" class="hero">
         <div class="hero-content">
-            <h1>Wellcome</h1>
-            <p>원하는 메뉴를 클릭하세요</p>
-            <a href="#book" style="background: rgba(255,255,255,0.9); color: #5d4037; padding: 15px 45px; border-radius: 30px; text-decoration: none; font-weight: bold; font-size: 1.1rem;">자세히 보기</a>
+            <h1>WELCOME</h1>
+            <ul class="hero-nav">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#characters">캐릭터</a></li>
+                <li><a href="#book">책소개</a></li>
+            </ul>
         </div>
     </header>
 
@@ -104,13 +103,13 @@
         </div>
     </section>
 
-    <section id="book" class="section" style="background-color: #fdfaf5;">
+    <section id="book" class="section">
         <h2 class="section-title">About the Book</h2>
         <div class="book-detail">
             <img src="https://via.placeholder.com/320x480?text=Vintage+Diary" alt="Book Cover" class="book-img">
             <div class="book-text">
                 <h3>다이어리 속의 여행자</h3>
-                <p>이 책은 어느 날 발견된 낡은 다이어리에서 시작됩니다. 현실과 상상의 경계가 무너지는 순간을 따뜻하고 감성적인 문체로 그려냈습니다. 감성적인 일러스트와 함께 읽는 특별한 판타지 성장 소설입니다.</p>
+                <p>현실과 상상의 경계가 무너지는 순간을 따뜻하게 그려낸 판타지 성장 소설입니다.</p>
                 <p style="margin-top: 20px; font-weight: bold; color: #8d6e63;">#빈티지 #감성 #기록 #성장소설</p>
                 <a href="#" class="buy-btn">도서 소장하기</a>
             </div>
