@@ -7,124 +7,146 @@
     <style>
         /* 기본 스타일 */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Pretendard', sans-serif; line-height: 1.6; color: #333; background-color: #fdfaf5; scroll-behavior: smooth; overflow-x: hidden; }
+        body { font-family: 'Pretendard', sans-serif; background-color: #fdfaf5; color: #333; overflow-x: hidden; }
         
-        /* [1] 메인 히어로 섹션 (첫 화면) */
+        /* [1] 메인 페이지 (전체 화면 배경 및 중앙 배치) */
         .hero { 
             height: 100vh; 
             display: flex; flex-direction: column; align-items: center; justify-content: center; 
             background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=1200&q=80');
             background-size: cover; background-position: center;
             color: white; text-align: center;
-            position: relative;
+            transition: height 0.5s ease;
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* 가로 중앙 정렬 */
+            justify-content: center;
         }
 
         .hero-content h1 { 
-            font-size: 5rem; 
-            letter-spacing: 8px;
-            text-shadow: 2px 2px 20px rgba(0,0,0,0.6); 
-            font-family: 'Georgia', serif; 
-            margin-bottom: 20px;
+            font-size: 5rem; letter-spacing: 8px; font-family: 'Georgia', serif; margin-bottom: 30px;
+            text-shadow: 2px 2px 20px rgba(0,0,0,0.6);
         }
 
-        /* 메뉴 스타일 */
-        .hero-nav { list-style: none; display: flex; gap: 40px; margin-top: 10px; }
+        /* 메뉴 중앙 정렬 스타일 */
+        .hero-nav { 
+            list-style: none; 
+            display: flex; 
+            gap: 50px; /* 메뉴 간 간격 */
+            padding: 0;
+            justify-content: center; /* 메뉴 항목들 중앙 정렬 */
+        }
+        
         .hero-nav li a { 
-            text-decoration: none; 
-            color: white; 
-            font-weight: 500; 
-            font-size: 1.2rem; 
-            padding-bottom: 5px;
-            border-bottom: 2px solid transparent;
-            transition: 0.3s; 
-            opacity: 0.8;
+            text-decoration: none; color: white; font-weight: 500; font-size: 1.3rem; 
+            padding-bottom: 8px; border-bottom: 2px solid transparent; transition: 0.3s; opacity: 0.8;
+            cursor: pointer;
+            letter-spacing: 1px;
         }
         .hero-nav li a:hover { opacity: 1; border-bottom: 2px solid white; }
 
-        /* [공통] 섹션 숨김 처리 - 메뉴 클릭 전까지 공간 차지 안 함 */
-        .section { 
-            padding: 100px 10%; 
-            min-height: 100vh; /* 각 섹션이 한 페이지를 가득 채우게 함 */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            background-color: #fdfaf5;
+        /* [2] 섹션 스타일 (기본 숨김) */
+        .content-section { 
+            display: none; 
+            padding: 100px 10%; background-color: #fdfaf5; min-height: 600px;
+            animation: fadeIn 0.8s ease; /* 나타날 때 부드러운 효과 */
         }
         
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 60px; color: #5d4037; font-family: 'Georgia', serif; }
 
-        /* [2] 캐릭터 소개 스타일 */
-        .character-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
-        .char-card { background: white; padding: 40px; border-radius: 15px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.03); border: 1px solid #efebe9; }
-        .char-img { width: 140px; height: 140px; border-radius: 50%; background: #d7ccc8; margin: 0 auto 25px; }
-        .char-name { font-size: 1.6rem; color: #795548; margin-bottom: 15px; }
+        /* 캐릭터 카드 디자인 */
+        .character-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
+        .char-card { background: white; padding: 40px; border-radius: 15px; text-align: center; border: 1px solid #efebe9; box-shadow: 0 5px 15px rgba(0,0,0,0.02); }
+        .char-img { width: 130px; height: 130px; border-radius: 50%; background: #d7ccc8; margin: 0 auto 20px; border: 4px solid #fdfaf5; }
 
-        /* [3] 책 소개 스타일 */
-        .book-detail { display: flex; gap: 60px; background: white; padding: 60px; border-radius: 15px; align-items: center; border: 1px solid #efebe9; box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
-        .book-img { width: 320px; border-radius: 5px; box-shadow: 15px 15px 30px rgba(0,0,0,0.1); }
-        .book-text h3 { font-size: 2.4rem; margin-bottom: 25px; color: #5d4037; }
-        .buy-btn { display: inline-block; padding: 15px 45px; background: #8d6e63; color: white; text-decoration: none; border-radius: 30px; margin-top: 30px; font-weight: bold; }
+        /* 책 상세 디자인 */
+        .book-box { display: flex; gap: 60px; background: white; padding: 60px; border-radius: 15px; align-items: center; border: 1px solid #efebe9; box-shadow: 0 5px 20px rgba(0,0,0,0.03); }
+        .book-img { width: 280px; border-radius: 5px; box-shadow: 10px 10px 25px rgba(0,0,0,0.1); }
+        .buy-btn { display: inline-block; padding: 15px 40px; background: #8d6e63; color: white; text-decoration: none; border-radius: 30px; margin-top: 25px; font-weight: bold; }
 
-        footer { text-align: center; padding: 60px; background: #3e2723; color: #d7ccc8; }
+        footer { text-align: center; padding: 50px; background: #3e2723; color: #d7ccc8; }
 
-        /* 모바일 대응 */
         @media (max-width: 768px) {
             .hero-content h1 { font-size: 3rem; }
-            .hero-nav { gap: 20px; flex-wrap: wrap; justify-content: center; }
-            .book-detail { flex-direction: column; text-align: center; }
+            .hero-nav { gap: 20px; }
+            .book-box { flex-direction: column; text-align: center; padding: 40px; }
         }
     </style>
 </head>
 <body>
 
-    <header id="home" class="hero">
+    <header class="hero" id="hero-bg">
         <div class="hero-content">
             <h1>WELCOME</h1>
             <ul class="hero-nav">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#characters">캐릭터</a></li>
-                <li><a href="#book">책소개</a></li>
+                <li><a onclick="showSection('home')">Home</a></li>
+                <li><a onclick="showSection('characters')">캐릭터</a></li>
+                <li><a onclick="showSection('book')">책소개</a></li>
             </ul>
         </div>
     </header>
 
-    <section id="characters" class="section">
+    <section id="characters" class="content-section">
         <h2 class="section-title">Story Characters</h2>
-        <div class="character-container">
-            <div class="char-card">
-                <div class="char-img"></div> 
-                <h3 class="char-name">리영</h3>
-                <p>꿈의 조각을 모으는 기록자. 빈티지한 다이어리에 일상을 담는 것을 좋아합니다.</p>
-            </div>
-            <div class="char-card">
-                <div class="char-img"></div>
-                <h3 class="char-name">알파</h3>
-                <p>오래된 서고를 지키는 사서. 주인공에게 잊혀진 기억의 열쇠를 전달합니다.</p>
-            </div>
-            <div class="char-card">
-                <div class="char-img"></div>
-                <h3 class="char-name">베타</h3>
-                <p>시간의 흐름을 기록하는 시간 여행자. 다이어리 속에 숨겨진 비밀을 알고 있습니다.</p>
-            </div>
+        <div class="character-grid">
+            <div class="char-card"><div class="char-img"></div><h3>리영</h3><p>꿈의 기록자</p></div>
+            <div class="char-card"><div class="char-img"></div><h3>알파</h3><p>기억의 사서</p></div>
+            <div class="char-card"><div class="char-img"></div><h3>베타</h3><p>시간 여행자</p></div>
         </div>
     </section>
 
-    <section id="book" class="section">
+    <section id="book" class="content-section">
         <h2 class="section-title">About the Book</h2>
-        <div class="book-detail">
-            <img src="https://via.placeholder.com/320x480?text=Vintage+Diary" alt="Book Cover" class="book-img">
+        <div class="book-box">
+            <img src="https://via.placeholder.com/280x400?text=Vintage+Diary" alt="Book" class="book-img">
             <div class="book-text">
                 <h3>다이어리 속의 여행자</h3>
-                <p>현실과 상상의 경계가 무너지는 순간을 따뜻하게 그려낸 판타지 성장 소설입니다.</p>
-                <p style="margin-top: 20px; font-weight: bold; color: #8d6e63;">#빈티지 #감성 #기록 #성장소설</p>
-                <a href="#" class="buy-btn">도서 소장하기</a>
+                <p>기록되지 않은 시간 속으로 떠나는 특별한 모험. 빈티지한 감성이 가득 담긴 성장 판타지 소설입니다.</p>
+                <a href="#" class="buy-btn" onclick="alert('구매 페이지로 이동합니다!')">도서 소장하기</a>
             </div>
         </div>
     </section>
 
-    <footer>
+    <footer id="footer" style="display: none;">
         <p>&copy; 2026 리영의 감성 책소개. All rights reserved.</p>
     </footer>
+
+    <script>
+        function showSection(sectionId) {
+            // 모든 섹션 숨기기
+            document.getElementById('characters').style.display = 'none';
+            document.getElementById('book').style.display = 'none';
+            document.getElementById('footer').style.display = 'none';
+            
+            const hero = document.getElementById('hero-bg');
+
+            if (sectionId === 'home') {
+                hero.style.height = '100vh';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                hero.style.height = '60vh'; // 메뉴 클릭 시 배경 높이 조절
+                const target = document.getElementById(sectionId);
+                target.style.display = 'block';
+                document.getElementById('footer').style.display = 'block';
+                
+                // 스크롤 이동
+                setTimeout(() => {
+                    window.scrollTo({
+                        top: hero.offsetHeight - 20,
+                        behavior: 'smooth'
+                    });
+                }, 100);
+            }
+        }
+    </script>
 
 </body>
 </html>
