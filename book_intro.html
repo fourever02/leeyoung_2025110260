@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WELCOME - 빈티지 다이어리</title>
+    <title>WELCOME - 빈티지 다이어리 & 귀여운 친구들</title>
     <style>
         /* 기본 스타일 */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Pretendard', sans-serif; background-color: #fdfaf5; color: #333; overflow-x: hidden; }
         
-        /* [1] 메인 페이지 (전체 화면 배경 및 중앙 배치) */
+        /* [1] 메인 페이지 (전체 화면 배경 및 중앙 집중 배치) */
         .hero { 
             height: 100vh; 
             display: flex; flex-direction: column; align-items: center; justify-content: center; 
@@ -22,7 +22,7 @@
         .hero-content {
             display: flex;
             flex-direction: column;
-            align-items: center; /* 가로 중앙 정렬 */
+            align-items: center;
             justify-content: center;
         }
 
@@ -35,9 +35,9 @@
         .hero-nav { 
             list-style: none; 
             display: flex; 
-            gap: 50px; /* 메뉴 간 간격 */
+            gap: 50px;
             padding: 0;
-            justify-content: center; /* 메뉴 항목들 중앙 정렬 */
+            justify-content: center;
         }
         
         .hero-nav li a { 
@@ -52,7 +52,7 @@
         .content-section { 
             display: none; 
             padding: 100px 10%; background-color: #fdfaf5; min-height: 600px;
-            animation: fadeIn 0.8s ease; /* 나타날 때 부드러운 효과 */
+            animation: fadeIn 0.8s ease;
         }
         
         @keyframes fadeIn {
@@ -62,21 +62,42 @@
 
         .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 60px; color: #5d4037; font-family: 'Georgia', serif; }
 
-        /* 캐릭터 카드 디자인 */
-        .character-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
-        .char-card { background: white; padding: 40px; border-radius: 15px; text-align: center; border: 1px solid #efebe9; box-shadow: 0 5px 15px rgba(0,0,0,0.02); }
-        .char-img { width: 130px; height: 130px; border-radius: 50%; background: #d7ccc8; margin: 0 auto 20px; border: 4px solid #fdfaf5; }
+        /* 캐릭터 카드 디자인 - 산리오/토이스토리 친구들 */
+        .character-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
+        .char-card { 
+            background: white; padding: 40px; border-radius: 20px; text-align: center; 
+            border: 1px solid #efebe9; box-shadow: 0 10px 25px rgba(0,0,0,0.03); 
+            transition: 0.3s ease;
+        }
+        .char-card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(141, 110, 99, 0.1); }
+        
+        .char-img { 
+            width: 150px; height: 150px; border-radius: 50%; 
+            margin: 0 auto 25px; border: 6px solid #fdfaf5; 
+            background-size: contain; /* 이미지가 잘리지 않고 전체가 보이도록 수정 */
+            background-repeat: no-repeat;
+            background-position: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
 
-        /* 책 상세 디자인 */
+        .char-name { font-size: 1.8rem; color: #795548; margin-bottom: 10px; font-family: 'Georgia', serif; }
+        .char-series { font-size: 1rem; color: #a1887f; margin-bottom: 15px; font-weight: bold; }
+        .char-desc { font-size: 1rem; color: #6d4c41; line-height: 1.7; }
+
+        /* 책 소개 디자인 (기존 유지) */
         .book-box { display: flex; gap: 60px; background: white; padding: 60px; border-radius: 15px; align-items: center; border: 1px solid #efebe9; box-shadow: 0 5px 20px rgba(0,0,0,0.03); }
         .book-img { width: 280px; border-radius: 5px; box-shadow: 10px 10px 25px rgba(0,0,0,0.1); }
+        .book-text h3 { font-size: 2.4rem; margin-bottom: 25px; color: #5d4037; }
         .buy-btn { display: inline-block; padding: 15px 40px; background: #8d6e63; color: white; text-decoration: none; border-radius: 30px; margin-top: 25px; font-weight: bold; }
 
         footer { text-align: center; padding: 50px; background: #3e2723; color: #d7ccc8; }
 
+        @media (max-width: 992px) {
+            .char-card { padding: 30px; }
+            .hero-content h1 { font-size: 3.5rem; }
+        }
         @media (max-width: 768px) {
-            .hero-content h1 { font-size: 3rem; }
-            .hero-nav { gap: 20px; }
+            .hero-nav { gap: 20px; flex-wrap: wrap; justify-content: center; }
             .book-box { flex-direction: column; text-align: center; padding: 40px; }
         }
     </style>
@@ -97,56 +118,12 @@
     <section id="characters" class="content-section">
         <h2 class="section-title">Story Characters</h2>
         <div class="character-grid">
-            <div class="char-card"><div class="char-img"></div><h3>리영</h3><p>꿈의 기록자</p></div>
-            <div class="char-card"><div class="char-img"></div><h3>알파</h3><p>기억의 사서</p></div>
-            <div class="char-card"><div class="char-img"></div><h3>베타</h3><p>시간 여행자</p></div>
-        </div>
-    </section>
-
-    <section id="book" class="content-section">
-        <h2 class="section-title">About the Book</h2>
-        <div class="book-box">
-            <img src="https://via.placeholder.com/280x400?text=Vintage+Diary" alt="Book" class="book-img">
-            <div class="book-text">
-                <h3>다이어리 속의 여행자</h3>
-                <p>기록되지 않은 시간 속으로 떠나는 특별한 모험. 빈티지한 감성이 가득 담긴 성장 판타지 소설입니다.</p>
-                <a href="#" class="buy-btn" onclick="alert('구매 페이지로 이동합니다!')">도서 소장하기</a>
+            <div class="char-card">
+                <div class="char-img" style="background-image: url('http://sanriokorea.co.kr/wp-content/themes/sanrio/images/pochacco.png');"></div>
+                <h3 class="char-name">Pochacco</h3>
+                <p class="char-series">산리오 (Sanrio)</p>
+                <p class="char-desc">호기심 많고 참견하기 좋아하는 멍멍이 친구. 스포티한 성격으로 축구와 농구를 좋아하며, 꿈은 키가 1cm라도 더 크는 것입니다.</p>
             </div>
-        </div>
-    </section>
-
-    <footer id="footer" style="display: none;">
-        <p>&copy; 2026 리영의 감성 책소개. All rights reserved.</p>
-    </footer>
-
-    <script>
-        function showSection(sectionId) {
-            // 모든 섹션 숨기기
-            document.getElementById('characters').style.display = 'none';
-            document.getElementById('book').style.display = 'none';
-            document.getElementById('footer').style.display = 'none';
             
-            const hero = document.getElementById('hero-bg');
-
-            if (sectionId === 'home') {
-                hero.style.height = '100vh';
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            } else {
-                hero.style.height = '60vh'; // 메뉴 클릭 시 배경 높이 조절
-                const target = document.getElementById(sectionId);
-                target.style.display = 'block';
-                document.getElementById('footer').style.display = 'block';
-                
-                // 스크롤 이동
-                setTimeout(() => {
-                    window.scrollTo({
-                        top: hero.offsetHeight - 20,
-                        behavior: 'smooth'
-                    });
-                }, 100);
-            }
-        }
-    </script>
-
-</body>
-</html>
+            <div class="char-card">
+                <div class="char-img"
