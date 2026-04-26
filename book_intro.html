@@ -1,141 +1,112 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>책 소개 - 한 권으로 끝내는 HTML</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>도서 및 캐릭터 소개</title>
     <style>
-        @page {
-            size: A4;
-            margin: 20mm;
-            background-color: #ffffff;
+        /* 기본 스타일 */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Pretendard', sans-serif; line-height: 1.6; color: #333; background-color: #f8f9fa; scroll-behavior: smooth; }
+        
+        /* 네비게이션 */
+        nav { display: flex; justify-content: space-between; padding: 20px 10%; background: #fff; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .nav-links { list-style: none; display: flex; gap: 30px; }
+        .nav-links a { text-decoration: none; color: #555; font-weight: 600; }
+
+        /* [1] 메인 페이지 (Hero Section) */
+        .hero { 
+            height: 90vh; 
+            display: flex; align-items: center; justify-content: center; 
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover; background-position: center;
+            color: white; text-align: center;
         }
-        body {
-            font-family: 'NanumGothic', 'Malgun Gothic', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #2c3e50;
-            color: white;
-            padding: 30pt 20pt;
-            text-align: center;
-            margin-bottom: 30pt;
-        }
-        h1 { margin: 0; font-size: 24pt; }
-        .container { padding: 0 20pt; }
-        .book-main {
-            display: flex;
-            margin-bottom: 30pt;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 20pt;
-        }
-        .book-cover {
-            width: 180pt;
-            height: 250pt;
-            background-color: #f0f0f0;
-            border: 1px solid #ddd;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: #999;
-            margin-right: 30pt;
-            flex-shrink: 0;
-        }
-        .book-details h2 {
-            margin-top: 0;
-            color: #2c3e50;
-            font-size: 18pt;
-        }
-        .info-list {
-            list-style: none;
-            padding: 0;
-        }
-        .info-list li {
-            margin-bottom: 8pt;
-            font-size: 11pt;
-        }
-        .info-list strong {
-            display: inline-block;
-            width: 60pt;
-            color: #555;
-        }
-        section {
-            margin-bottom: 25pt;
-        }
-        h3 {
-            border-left: 5px solid #2c3e50;
-            padding-left: 10pt;
-            color: #2c3e50;
-            font-size: 14pt;
-            margin-bottom: 10pt;
-        }
-        .content-box {
-            background-color: #f8f9fa;
-            padding: 15pt;
-            border-radius: 5pt;
-        }
-        ul, ol {
-            padding-left: 20pt;
-        }
-        li {
-            margin-bottom: 5pt;
+        .hero-content h1 { font-size: 4rem; margin-bottom: 20px; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+        .hero-content p { font-size: 1.5rem; margin-bottom: 30px; opacity: 0.9; }
+
+        /* 공통 섹션 스타일 */
+        .section { padding: 80px 10%; }
+        .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 50px; color: #2d3436; }
+
+        /* [2] 캐릭터 소개 카테고리 */
+        .character-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .char-card { background: white; padding: 30px; border-radius: 20px; text-align: center; box-shadow: 0 10px 20px rgba(0,0,0,0.05); transition: 0.3s; }
+        .char-card:hover { transform: translateY(-10px); }
+        .char-img { width: 120px; height: 120px; border-radius: 50%; background: #eee; margin-bottom: 20px; object-fit: cover; }
+        .char-name { font-size: 1.5rem; color: #4e73df; margin-bottom: 10px; }
+
+        /* [3] 책 소개 카테고리 */
+        .book-detail { display: flex; gap: 50px; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); align-items: center; }
+        .book-img { width: 300px; border-radius: 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .book-text h3 { font-size: 2.2rem; margin-bottom: 20px; }
+        .buy-btn { display: inline-block; padding: 12px 30px; background: #4e73df; color: white; text-decoration: none; border-radius: 5px; margin-top: 20px; font-weight: bold; }
+
+        /* 푸터 */
+        footer { text-align: center; padding: 50px; background: #2d3436; color: white; }
+
+        /* 반응형 */
+        @media (max-width: 768px) {
+            .book-detail { flex-direction: column; text-align: center; }
+            .hero-content h1 { font-size: 2.5rem; }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>도서 소개서</h1>
+
+    <nav>
+        <div style="font-weight: 900; font-size: 1.5rem;">MY BOOK</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#characters">캐릭터</a></li>
+            <li><a href="#book">책소개</a></li>
+        </ul>
+    </nav>
+
+    <header id="home" class="hero">
+        <div class="hero-content">
+            <h1>이야기의 시작</h1>
+            <p>우리가 꿈꾸던 세계가 이곳에서 펼쳐집니다.</p>
+            <a href="#book" style="background: white; color: #333; padding: 15px 40px; border-radius: 30px; text-decoration: none; font-weight: bold;">둘러보기</a>
+        </div>
     </header>
-    
-    <div class="container">
-        <div class="book-main">
-            <div class="book-cover">
-                표지 이미지 영역
+
+    <section id="characters" class="section">
+        <h2 class="section-title">주요 캐릭터</h2>
+        <div class="character-container">
+            <div class="char-card">
+                <div class="char-img" style="background: #ff7675;"></div> <h3 class="char-name">리영</h3>
+                <p>꿈을 찾아 떠나는 주인공. 긍정적이고 모험을 두려워하지 않습니다.</p>
             </div>
-            <div class="book-details">
-                <h2>한 권으로 끝내는 HTML</h2>
-                <ul class="info-list">
-                    <li><strong>저자</strong> 홍길동</li>
-                    <li><strong>출판사</strong> 코딩출판사</li>
-                    <li><strong>발행일</strong> 2024년 05월 20일</li>
-                    <li><strong>가격</strong> 18,000원</li>
-                    <li><strong>ISBN</strong> 123-45-67890-12-3</li>
-                </ul>
+            <div class="char-card">
+                <div class="char-img" style="background: #74b9ff;"></div>
+                <h3 class="char-name">알파</h3>
+                <p>리영의 조력자이자 지혜로운 안내자. 미지의 세계에 대해 잘 알고 있습니다.</p>
+            </div>
+            <div class="char-card">
+                <div class="char-img" style="background: #55efc4;"></div>
+                <h3 class="char-name">베타</h3>
+                <p>비밀을 간직한 캐릭터. 가끔은 차갑지만 속마음은 따뜻합니다.</p>
             </div>
         </div>
+    </section>
 
-        <section>
-            <h3>책 소개</h3>
-            <p>이 책은 웹 개발의 가장 기본이 되는 HTML5를 기초부터 실전 응용까지 누구나 쉽게 배울 수 있도록 구성되었습니다. 비전공자도 이해할 수 있는 쉬운 설명과 풍부한 예제 코드를 통해 나만의 웹사이트를 직접 만들어보는 즐거움을 선사합니다.</p>
-        </section>
-
-        <section>
-            <h3>주요 특징</h3>
-            <div class="content-box">
-                <ul>
-                    <li>최신 HTML5 표준 및 시맨틱 태그 완벽 반영</li>
-                    <li>단계별 실습 예제로 배우는 웹 구조 설계</li>
-                    <li>초보자가 자주 실수하는 포인트 짚어주기</li>
-                    <li>모바일 환경을 고려한 기초 레이아웃 가이드</li>
-                </ul>
+    <section id="book" class="section" style="background-color: #fff;">
+        <h2 class="section-title">책 소개</h2>
+        <div class="book-detail">
+            <img src="https://via.placeholder.com/300x450?text=Book+Cover" alt="Book Cover" class="book-img">
+            <div class="book-text">
+                <h3>미지의 세계로의 여행</h3>
+                <p>이 책은 현실을 넘어 상상의 나래를 펼치는 특별한 이야기를 담고 있습니다. 캐릭터들의 성장과 우정, 그리고 놀라운 반전이 여러분을 기다립니다.</p>
+                <p style="margin-top: 15px; font-weight: bold; color: #4e73df;">#모험 #성장 #판타지</p>
+                <a href="#" class="buy-btn">지금 바로 주문하기</a>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section>
-            <h3>목차</h3>
-            <ol>
-                <li>웹의 역사와 HTML의 이해</li>
-                <li>텍스트와 하이퍼링크 태그</li>
-                <li>멀티미디어(이미지, 영상) 활용하기</li>
-                <li>데이터 정리를 위한 표와 리스트</li>
-                <li>사용자 입력을 받는 폼(Form) 요소</li>
-                <li>시맨틱 태그로 완성하는 웹사이트 구조</li>
-            </ol>
-        </section>
-    </div>
+    <footer>
+        <p>&copy; 2026 리영의 책소개 페이지. All rights reserved.</p>
+    </footer>
+
 </body>
 </html>
