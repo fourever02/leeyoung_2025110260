@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WELCOME - 이영의 웹디자인 과제</title>
+    <title>WELCOME - 이영이 웹디자인 과제</title>
     <style>
         /* 기본 스타일 */
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -13,7 +13,7 @@
         .hero { 
             height: 100vh; 
             display: flex; flex-direction: column; align-items: center; justify-content: center; 
-            background-color: #a1887f; /* 사진 없을 때를 대비한 배경색 */
+            background-color: #a1887f;
             background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=1200&q=80');
             background-size: cover; background-position: center;
             color: white; text-align: center;
@@ -52,9 +52,7 @@
         .char-card { 
             background: white; padding: 40px; border-radius: 20px; text-align: center; 
             border: 1px solid #efebe9; box-shadow: 0 10px 25px rgba(0,0,0,0.03); 
-            transition: transform 0.3s ease;
         }
-        .char-card:hover { transform: translateY(-10px); }
         
         .char-img { 
             width: 180px; height: 180px; border-radius: 20px; 
@@ -62,28 +60,43 @@
             background-color: #eceff1; background-size: cover; background-repeat: no-repeat; background-position: center;
         }
         .char-card h3 { color: #795548; margin-bottom: 15px; font-size: 1.6rem; }
-        .char-card p { line-height: 1.6; color: #6d4c41; font-size: 0.95rem; text-align: justify; }
+        .char-card p { line-height: 1.7; color: #6d4c41; font-size: 1rem; text-align: center; word-break: keep-all; }
 
         /* [3] 책 소개 디자인 */
         .book-box { 
             display: flex; gap: 60px; background: white; padding: 60px; border-radius: 15px; 
-            align-items: center; border: 1px solid #efebe9; box-shadow: 0 5px 20px rgba(0,0,0,0.03); 
-            margin-bottom: 60px;
+            align-items: flex-start; border: 1px solid #efebe9; box-shadow: 0 5px 20px rgba(0,0,0,0.03); 
         }
-        .book-img { width: 280px; border-radius: 5px; box-shadow: 10px 10px 25px rgba(0,0,0,0.15); background-color: #eee; }
-        .book-text h3 { font-size: 2rem; margin-bottom: 15px; color: #3e2723; }
-        .book-text p { margin-bottom: 20px; line-height: 1.8; color: #5d4037; }
+        .book-img { width: 300px; border-radius: 5px; box-shadow: 10px 10px 25px rgba(0,0,0,0.15); position: sticky; top: 20px; }
+        
+        .book-text { 
+            flex: 1; 
+            display: flex; 
+            flex-direction: column; /* 세로 정렬 */
+            height: 100%;
+        }
 
-        /* 시(Poem) 섹션 디자인 */
-        .poem-container {
-            background-color: #fff; padding: 80px 40px; border-radius: 15px;
-            text-align: center; line-height: 2.2; color: #5d4037;
-            border: 1px solid #efebe9; position: relative;
+        .book-text h3 { font-size: 2rem; margin-bottom: 10px; color: #3e2723; }
+        .book-text .author-info { font-size: 1.1rem; color: #8d6e63; margin-bottom: 25px; font-weight: bold; }
+        
+        /* 책 소개 내부 시(Poem) 디자인 */
+        .inner-poem {
+            margin: 30px 0 50px 0; /* 아래쪽 간격을 50px로 늘림 */
+            padding: 30px;
+            background-color: #fafafa;
+            border-left: 4px solid #d7ccc8;
+            font-style: italic;
+            line-height: 1.8;
+            color: #5d4037;
+            font-size: 1.05rem;
         }
-        .poem-container::before { content: '"'; font-size: 4rem; color: #d7ccc8; position: absolute; top: 20px; left: 50%; transform: translateX(-50%); font-family: 'Georgia'; }
-        .poem-title { font-size: 1.8rem; font-weight: bold; margin-bottom: 40px; color: #3e2723; letter-spacing: 2px; }
-        .poem-content { font-size: 1.1rem; margin-bottom: 30px; font-style: italic; }
-        .poem-author { font-size: 1rem; font-weight: 500; color: #8d6e63; }
+        .inner-poem strong { display: block; margin-bottom: 15px; font-style: normal; color: #3e2723; font-size: 1.2rem; }
+
+        /* 버튼 오른쪽 하단 정렬 */
+        .btn-wrapper {
+            text-align: right; /* 버튼을 오른쪽으로 보냄 */
+            margin-top: auto;
+        }
 
         .buy-btn { 
             display: inline-block; padding: 15px 40px; background: #8d6e63; color: white; 
@@ -95,7 +108,9 @@
 
         @media (max-width: 992px) {
             .book-box { flex-direction: column; text-align: center; padding: 40px; }
-            .hero-content h1 { font-size: 3.5rem; }
+            .book-img { position: static; margin-bottom: 30px; }
+            .inner-poem { text-align: center; border-left: none; border-top: 1px solid #d7ccc8; border-bottom: 1px solid #d7ccc8; }
+            .btn-wrapper { text-align: center; } /* 모바일에서는 다시 중앙 정렬 */
         }
     </style>
 </head>
@@ -105,9 +120,9 @@
         <div class="hero-content">
             <h1>WELCOME</h1>
             <ul class="hero-nav">
-                <li><a onclick="showSection('home')">Home</a></li>
-                <li><a onclick="showSection('characters')">캐릭터</a></li>
-                <li><a onclick="showSection('book')">책소개</a></li>
+                <li><a href="#home" onclick="showSection('home')">Home</a></li>
+                <li><a href="#characters" onclick="showSection('characters')">캐릭터</a></li>
+                <li><a href="#book" onclick="showSection('book')">책소개</a></li>
             </ul>
         </div>
     </header>
@@ -118,17 +133,17 @@
             <div class="char-card">
                 <div class="char-img" style="background-image: url('포차코.jpeg');"></div>
                 <h3>Pochacco</h3>
-                <p>호기심이 왕성하고 산책을 무척 좋아하는 멍멍이 친구입니다. 귀여운 외모와 달리 스포츠를 즐기는 활발한 성격을 가지고 있으며, 친구들과 함께 시간을 보내는 것을 가장 행복해합니다. 언제나 긍정적인 에너지로 주변을 밝게 만들어주는 매력적인 캐릭터입니다.</p>
+                <p>호기심이 왕성하고 산책을 무척 좋아하는 멍멍이 친구입니다. 귀여운 외모와 달리 스포츠를 즐기는 활발한 성격을 가지고 있으며, 친구들과 함께 시간을 보내는 것을 가장 행복해합니다.</p>
             </div>
             <div class="char-card">
                 <div class="char-img" style="background-image: url('알린.jpeg');"></div>
                 <h3>Alien</h3>
-                <p>세 개의 눈을 가진 귀여운 외계인 장난감들입니다. 피자 플래닛의 뽑기 기계 안에서 살던 이들은 독특한 말투와 엉뚱한 행동으로 많은 사랑을 받고 있습니다. 항상 서로를 아끼며 함께 움직이는 이들의 순수한 모습은 보는 사람으로 하여금 미소 짓게 만드는 특별한 힘이 있습니다.</p>
+                <p>세 개의 눈을 가진 귀여운 외계인 장난감들입니다. 피자 플래닛의 뽑기 기계 안에서 살던 이들은 독특한 말투와 엉뚱한 행동으로 많은 사랑을 받고 있습니다.</p>
             </div>
             <div class="char-card">
                 <div class="char-img" style="background-image: url('한교동.jpeg');"></div>
                 <h3>Hangyodon</h3>
-                <p>사람을 웃게 만드는 것을 좋아하는 따뜻한 마음의 소유자, 한교동입니다. 조금은 서툴고 겁이 많기도 하지만, 친구들을 위해서라면 누구보다 용기를 낼 줄 아는 의리파 반어인입니다. 하트를 든 모습처럼 사랑을 전하는 것을 소중히 여기는 낭만적인 캐릭터이기도 합니다.</p>
+                <p>사람을 웃게 만드는 것을 좋아하는 따뜻한 마음의 소유자, 한교동입니다. 조금은 서툴고 겁이 많기도 하지만, 친구들을 위해서라면 누구보다 용기를 낼 줄 아는 의리파 반어인입니다.</p>
             </div>
         </div>
     </section>
@@ -139,23 +154,23 @@
             <img src="꽃을보듯너를본다jpg.jpg" alt="꽃을 보듯 너를 본다 책 표지" class="book-img">
             <div class="book-text">
                 <h3>꽃을 보듯 너를 본다</h3>
-                <p><strong>나태주 시집 (100만 부 기념 에디션)</strong></p>
-                <p>독자들이 직접 뽑은 나태주 시인의 대표 시들이 담긴 이 시집은, 작고 소박한 것들에서 발견하는 아름다움과 따뜻한 위로를 전합니다. 일상에 지친 마음을 어루만져 주는 시구들을 만나보세요.</p>
-                <div class="poem-container">
-            <div class="poem-title">한 사람 건너</div>
-            <div class="poem-content">
-               한 사람 건너 한 사람<br>
-               다시 한 사람 건너 또 한 사람<br>
-               애기 보듯 너를 본다<br>
-               찡그린 이마<br>
-               앙다문 입술<br>
-               무슨 마음 불편한 일이라도 있는 것이냐?<br>
-               꽃을 보듯 너를 본다.<br>
-               나태주, 『꽃을 보듯 너를 본다』, 지혜, 2020년, 26p
-               [출처] 나태주 시인의 시 '한 사람 건너</div>
-            <p class="poem-author">- 나태주 시집 중에서</p>
-        </div>
-                <a href="https://product.kyobobook.co.kr/detail/S000001752581" target="_blank" class="buy-btn">도서 상세정보 보기</a>
+                <p class="author-info">나태주 시집 (100만 부 기념 에디션)</p>
+                
+                <p>독자들이 직접 뽑은 나태주 시인의 대표 시들이 담긴 시집입니다. 소박하지만 따뜻한 위로를 전하는 시구들을 통해 일상의 소중함을 발견해 보세요.</p>
+                
+                <div class="inner-poem">
+                    <strong>한 사람 건너</strong>
+                    세상에 아는 사람 하나 없어도<br>
+                    한 사람 건너면 다 아는 사람<br><br>
+                    그 한 사람의 마음이<br>
+                    나의 마음과 같을 때<br><br>
+                    세상은 갑자기 환해지고<br>
+                    아름다워집니다.
+                </div>
+
+                <div class="btn-wrapper">
+                    <a href="https://product.kyobobook.co.kr/detail/S000001752581" target="_blank" class="buy-btn">도서 상세정보 보기</a>
+                </div>
             </div>
         </div>
     </section>
@@ -172,21 +187,26 @@
             
             const hero = document.getElementById('hero-bg');
 
-            if (sectionId === 'home') {
+            if (sectionId === 'home' || sectionId === '') {
                 hero.style.height = '100vh';
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             } else {
                 hero.style.height = '60vh';
                 const target = document.getElementById(sectionId);
-                target.style.display = 'block';
-                document.getElementById('footer').style.display = 'block';
-                
-                setTimeout(() => {
-                    window.scrollTo({
-                        top: hero.offsetHeight - 20,
-                        behavior: 'smooth'
-                    });
-                }, 100);
+                if(target) {
+                    target.style.display = 'block';
+                    document.getElementById('footer').style.display = 'block';
+                    setTimeout(() => {
+                        window.scrollTo({ top: hero.offsetHeight - 20, behavior: 'smooth' });
+                    }, 100);
+                }
+            }
+        }
+
+        window.onload = function() {
+            const hash = window.location.hash.replace('#', '');
+            if (hash) {
+                showSection(hash);
             }
         }
     </script>
