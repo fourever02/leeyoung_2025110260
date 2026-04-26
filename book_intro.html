@@ -9,11 +9,12 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Pretendard', sans-serif; background-color: #fdfaf5; color: #333; overflow-x: hidden; }
         
-        /* [1] 메인 페이지 (전체 화면 배경 및 중앙 집중 배치) */
+        /* [1] 메인 페이지 (배경 사진이 안뜨더라도 하얗게 보이지 않게 갈색 배경색 추가) */
         .hero { 
             height: 100vh; 
             display: flex; flex-direction: column; align-items: center; justify-content: center; 
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=1200&q=80');
+            background-color: #8d6e63; /* 배경 이미지가 없을 때를 대비한 기본색 */
+            background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=1200&q=80');
             background-size: cover; background-position: center;
             color: white; text-align: center;
             transition: height 0.5s ease;
@@ -33,7 +34,7 @@
         }
         .hero-nav li a:hover { opacity: 1; border-bottom: 2px solid white; }
 
-        /* [2] 섹션 스타일 (기본 숨김) */
+        /* [2] 섹션 스타일 (메뉴 클릭 시 노출) */
         .content-section { 
             display: none; 
             padding: 100px 10%; background-color: #fdfaf5; min-height: 600px;
@@ -57,20 +58,19 @@
         .char-img { 
             width: 150px; height: 150px; border-radius: 50%; 
             margin: 0 auto 25px; border: 6px solid #fdfaf5; 
+            background-color: #eee; /* 사진 없을 때 기본색 */
             background-size: contain; 
             background-repeat: no-repeat;
             background-position: center;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
-        .char-name { font-size: 1.8rem; color: #795548; margin-bottom: 10px; font-family: 'Georgia', serif; }
-
-        /* [3] 책 소개 디자인 - 배경 제거 및 이미지 변경 */
+        /* [3] 책 소개 디자인 - 새 이미지 적용 */
         .book-box { 
             display: flex; gap: 60px; background: white; padding: 60px; border-radius: 15px; 
             align-items: center; border: 1px solid #efebe9; box-shadow: 0 5px 20px rgba(0,0,0,0.03); 
         }
-        .book-img { width: 300px; border-radius: 5px; box-shadow: 10px 10px 25px rgba(0,0,0,0.15); }
+        .book-img { width: 300px; border-radius: 5px; box-shadow: 10px 10px 25px rgba(0,0,0,0.15); background-color: #eee; }
         
         .buy-btn { 
             display: inline-block; padding: 15px 40px; background: #8d6e63; color: white; 
@@ -103,17 +103,17 @@
         <div class="character-grid">
             <div class="char-card">
                 <div class="char-img" style="background-image: url('image_8.png');"></div>
-                <h3 class="char-name">Pochacco</h3>
+                <h3>Pochacco</h3>
                 <p>호기심 많은 멍멍이 친구.</p>
             </div>
             <div class="char-card">
                 <div class="char-img" style="background-image: url('image_10.png');"></div>
-                <h3 class="char-name">Alien</h3>
+                <h3>Alien</h3>
                 <p>세 개의 눈을 가진 외계인 장난감.</p>
             </div>
             <div class="char-card">
                 <div class="char-img" style="background-image: url('image_9.png');"></div>
-                <h3 class="char-name">Hangyodon</h3>
+                <h3>Hangyodon</h3>
                 <p>겁 많고 서툰 반어인 친구.</p>
             </div>
         </div>
@@ -122,13 +122,13 @@
     <section id="book" class="content-section">
         <h2 class="section-title">Book Introduction</h2>
         <div class="book-box">
-            <img src="image_12.png" alt="꽃을 보듯 너를 본다 책 표지" class="book-img">
+            <img src="image_13.png" alt="꽃을 보듯 너를 본다 책 표지" class="book-img">
             <div class="book-text">
                 <h3>꽃을 보듯 너를 본다</h3>
-                <p><strong>나태주 시집</strong></p>
-                <p>독자들이 직접 뽑은 나태주 시인의 대표 시집. 소박하지만 따뜻한 위로를 전하는 시어들이 담겨 있습니다.</p>
+                <p><strong>나태주 시집 (기념 에디션)</strong></p>
+                <p>나태주 시인이 전하는 위로와 사랑의 말들. 100만 부 기념 에디션으로 더욱 특별하게 구성된 시집입니다.</p>
                 <p style="font-weight: bold; color: #8d6e63;">#시집 #나태주 #따뜻한위로 #베스트셀러</p>
-                <a href="https://search.shopping.naver.com/book/search?query=%EA%BD%83%EC%9D%84%20%EB%B3%B4%EB%93%AF%20%EB%84%88%EB%A5%BC%20%EB%B3%B8%EB%8B%A4" target="_blank" class="buy-btn">도서 상세정보 보기</a>
+                <a href="#" class="buy-btn">도서 상세정보 보기</a>
             </div>
         </div>
     </section>
