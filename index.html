@@ -49,9 +49,18 @@
 
         /* 캐릭터 카드 디자인 */
         .character-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+        
         .char-card { 
             background: white; padding: 40px; border-radius: 20px; text-align: center; 
             border: 1px solid #efebe9; box-shadow: 0 10px 25px rgba(0,0,0,0.03); 
+            transition: all 0.3s ease; /* 모든 변화를 부드럽게 */
+        }
+        
+        /* 마우스 오버 시 모션 추가 */
+        .char-card:hover { 
+            transform: translateY(-15px); /* 위로 쏙 올라가는 모션 */
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08); /* 그림자 강화 */
+            border-color: #d7ccc8; /* 테두리 강조 */
         }
         
         .char-img { 
@@ -159,13 +168,13 @@
                 
                 <div class="inner-poem">
                     <strong>한 사람 건너</strong>
-                    한 사람 건너 한 사람<br>
-                    다시 한 사람 건너 또 한 사람<br>
-                    애기 보듯 너를 본다<br>
-                    찡그린 이마<br>
-                    앙다문 입술<br>
-                    무슨 마음 불편한 일이라도 있는 것이냐?<br>
-                    꽃을 보듯 너를 본다.<br>
+                   한 사람 건너 한 사람
+                   다시 한 사람 건너 또 한 사람<br>
+                   애기 보듯 너를 본다<br>
+                   찡그린 이마
+                   앙다문 입술
+                   무슨 마음 불편한 일이라도 있는 것이냐?<br>
+                   꽃을 보듯 너를 본다.
                 </div>
 
                 <div class="btn-wrapper">
