@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WELCOME - 이영이 웹디자인 과제</title>
+    <title>WELCOME - 이영의 웹디자인 과제</title>
     <style>
         /* 기본 스타일 */
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -65,42 +65,41 @@
         /* [3] 책 소개 디자인 */
         .book-box { 
             display: flex; gap: 60px; background: white; padding: 60px; border-radius: 15px; 
-            align-items: flex-start; border: 1px solid #efebe9; box-shadow: 0 5px 20px rgba(0,0,0,0.03); 
+            align-items: center; /* 이미지를 중앙으로 내려서 시 박스와 높이를 맞춤 */
+            border: 1px solid #efebe9; box-shadow: 0 5px 20px rgba(0,0,0,0.03); 
         }
-        .book-img { width: 300px; border-radius: 5px; box-shadow: 10px 10px 25px rgba(0,0,0,0.15); position: sticky; top: 20px; }
+        .book-img { width: 300px; border-radius: 5px; box-shadow: 10px 10px 25px rgba(0,0,0,0.15); }
         
         .book-text { 
             flex: 1; 
             display: flex; 
-            flex-direction: column; /* 세로 정렬 */
-            height: 100%;
+            flex-direction: column;
         }
 
-        .book-text h3 { font-size: 2rem; margin-bottom: 10px; color: #3e2723; }
-        .book-text .author-info { font-size: 1.1rem; color: #8d6e63; margin-bottom: 25px; font-weight: bold; }
+        .book-text h3 { font-size: 1.8rem; margin-bottom: 8px; color: #3e2723; }
+        .book-text .author-info { font-size: 1rem; color: #8d6e63; margin-bottom: 15px; font-weight: bold; }
         
-        /* 책 소개 내부 시(Poem) 디자인 */
+        /* 책 소개 내부 시(Poem) 디자인 - 폰트 크기 및 간격 조정 */
         .inner-poem {
-            margin: 30px 0 50px 0; /* 아래쪽 간격을 50px로 늘림 */
-            padding: 30px;
+            margin: 15px 0 30px 0;
+            padding: 20px;
             background-color: #fafafa;
             border-left: 4px solid #d7ccc8;
             font-style: italic;
-            line-height: 1.8;
+            line-height: 1.6; /* 줄 간격을 살짝 좁힘 */
             color: #5d4037;
-            font-size: 1.05rem;
+            font-size: 0.95rem; /* 폰트 크기를 줄여서 다 보이게 함 */
         }
-        .inner-poem strong { display: block; margin-bottom: 15px; font-style: normal; color: #3e2723; font-size: 1.2rem; }
+        .inner-poem strong { display: block; margin-bottom: 10px; font-style: normal; color: #3e2723; font-size: 1.1rem; }
 
-        /* 버튼 오른쪽 하단 정렬 */
         .btn-wrapper {
-            text-align: right; /* 버튼을 오른쪽으로 보냄 */
-            margin-top: auto;
+            text-align: right;
         }
 
         .buy-btn { 
-            display: inline-block; padding: 15px 40px; background: #8d6e63; color: white; 
+            display: inline-block; padding: 12px 35px; background: #8d6e63; color: white; 
             text-decoration: none; border-radius: 30px; font-weight: bold; transition: 0.3s;
+            font-size: 0.9rem;
         }
         .buy-btn:hover { background: #5d4037; }
 
@@ -108,9 +107,9 @@
 
         @media (max-width: 992px) {
             .book-box { flex-direction: column; text-align: center; padding: 40px; }
-            .book-img { position: static; margin-bottom: 30px; }
+            .book-img { margin-bottom: 30px; }
             .inner-poem { text-align: center; border-left: none; border-top: 1px solid #d7ccc8; border-bottom: 1px solid #d7ccc8; }
-            .btn-wrapper { text-align: center; } /* 모바일에서는 다시 중앙 정렬 */
+            .btn-wrapper { text-align: center; }
         }
     </style>
 </head>
@@ -156,7 +155,7 @@
                 <h3>꽃을 보듯 너를 본다</h3>
                 <p class="author-info">나태주 시집 (100만 부 기념 에디션)</p>
                 
-                <p>독자들이 직접 뽑은 나태주 시인의 대표 시들이 담긴 시집입니다. 소박하지만 따뜻한 위로를 전하는 시구들을 통해 일상의 소중함을 발견해 보세요.</p>
+                <p style="font-size: 0.95rem;">독자들이 직접 뽑은 나태주 시인의 대표 시집입니다. 소박한 위로를 통해 일상의 소중함을 발견해 보세요.</p>
                 
                 <div class="inner-poem">
                     <strong>한 사람 건너</strong>
